@@ -1,0 +1,82 @@
+def versions = [:]
+
+versions.retrofit = '2.9.0'
+versions.retrofitAdapater = '1.0.0'
+versions.retrofitLogger = '3.8.0'
+versions.gson = '2.8.8'
+versions.rxJava = '2.1.10'
+versions.rxKotlin = '2.3.0'
+versions.rxAndroid='2.0.1'
+versions.hiltClassPath = '2.38.1'
+versions.appCompat = '1.3.1'
+versions.coreKtx = '1.6.0'
+versions.material = '1.4.0'
+versions.fragmentKtx = '1.3.2'
+versions.activitytKtx = '1.3.1'
+versions.navVersion = '2.3.5'
+versions.glide = '4.12.0'
+versions.roomVersion = '2.3.0'
+versions.lifecycle = '2.2.0'
+versions.coroutines = '1.3.7'
+//Build version details
+ext.build_version = [:]
+
+def build_version = [:]
+build_version.compile_sdk = 30
+build_version.target_sdk = 30
+build_version.min_sdk = 21
+build_version.sdk_version = "1.0"
+build_version.versionName = "1.0"
+build_version.version_code = 1
+build_version.build_tools = "28.0.3"
+ext.build_version = build_version
+
+
+def networkLib = [:]
+networkLib.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+networkLib.retrofitConvertor = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+networkLib.retrofitAdapter = "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$versions.retrofitAdapater"
+networkLib.retrofitLogger = "com.squareup.okhttp3:logging-interceptor:$versions.retrofitLogger"
+networkLib.gson = "com.google.code.gson:gson:$versions.gson"
+ext.networkLib = networkLib
+
+def di = [:]
+di.hiltClassPath = "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltClassPath"
+di.hiltAndroid ="com.google.dagger:hilt-android:$versions.hiltClassPath"
+di.hiltCompiler = "com.google.dagger:hilt-compiler:$versions.hiltClassPath"
+ext.di = di
+
+def androidCore = [:]
+androidCore.appcompat = "androidx.appcompat:appcompat:$versions.appCompat"
+androidCore.core = "androidx.core:core-ktx:$versions.coreKtx"
+androidCore.material ="com.google.android.material:material:$versions.material"
+androidCore.fragmentKtx = "androidx.fragment:fragment-ktx:$versions.fragmentKtx"
+androidCore.activityKtx = "androidx.activity:activity-ktx:$versions.activitytKtx"
+androidCore.fragmentNav =  "androidx.navigation:navigation-fragment-ktx:$versions.navVersion"
+androidCore.navigationUi = "androidx.navigation:navigation-ui-ktx:$versions.navVersion"
+androidCore.safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navVersion"
+ext.androidCore = androidCore
+
+def coroutine = [:]
+coroutine.base = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine"
+coroutine.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine"
+ext.coroutine = coroutine
+
+def lifecycle = [:]
+lifecycle.ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+lifecycle.livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.extension = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+ext.lifecycle = lifecycle
+
+def util = [:]
+util.joda = "net.danlew:android.joda:2.10.12.2"
+ext.util = util
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+}
+
+ext.addRepos = this.&addRepos

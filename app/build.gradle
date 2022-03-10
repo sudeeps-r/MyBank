@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.app.mybank"
+        minSdk build_version.min_sdk
+        targetSdk build_version.target_sdk
+        versionCode 1
+        versionName "1.0"
+        versionCode 1
+        versionName "1.0"
+        buildConfigField "String", "SERVER", project.SERVER
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildFeatures {
+            dataBinding true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    //Network
+    implementation networkLib.retrofit
+    implementation networkLib.retrofitConvertor
+    implementation networkLib.retrofitAdapter
+    implementation networkLib.retrofitLogger
+    implementation networkLib.gson
+
+    //livedata
+    implementation lifecycle.ktx
+    implementation lifecycle.livedata
+    implementation lifecycle.java8
+    implementation lifecycle.extension
+
+    //coroutine
+    implementation coroutine.base
+    implementation coroutine.android
+
+    //Hilt
+    implementation di.hiltAndroid
+    kapt di.hiltCompiler
+
+    implementation util.joda
+
+    implementation androidCore.core
+    implementation androidCore.appcompat
+    implementation androidCore.material
+    implementation androidCore.fragmentKtx
+    implementation androidCore.fragmentNav
+
+    testImplementation 'junit:junit:4.+'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
+}

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.app.mybank.ui.login.LoginViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/MyThemeOverlay_Toolbar" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/pix_24dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/logo_img" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_username"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pix_16dp"
+                    android:hint="@string/label_hint_user_name">
+
+                    <EditText
+                        style="@style/edit_style"
+                        android:afterTextChanged="@{vm::setUserName}"
+                        android:imeOptions="actionNext"
+                        android:paddingStart="0dp"
+                        android:inputType="text"
+                        android:paddingEnd="0dp"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_password"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pix_8dp"
+                    android:hint="@string/label_hint_password">
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        style="@style/edit_style"
+                        android:afterTextChanged="@{vm::setPassword}"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/btn_style"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/pix_16dp"
+                    android:gravity="center"
+                    android:onClick="@{()->vm.performLogin()}"
+                    android:text="@string/label_login"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/btn_style.inactive"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/pix_16dp"
+                    android:gravity="center"
+                    android:onClick="openSignup"
+                    android:text="@string/label_create_account"
+                    android:textColor="@color/purple_500"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/loader_container"
+                app:showError="@{vm.showError}"
+                app:showLoader="@{vm.showLoader}"
+                app:text="@{vm.showErrorText}" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

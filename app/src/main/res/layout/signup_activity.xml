@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.app.mybank.ui.signup.SignUpViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/MyThemeOverlay_Toolbar" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/pix_24dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/logo_img" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_username"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_hint_user_name">
+
+                    <EditText
+                        style="@style/edit_style"
+                        android:inputType="text"
+                        android:afterTextChanged="@{vm::setUserName}"
+                        android:imeOptions="actionNext" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_password"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pix_8dp"
+                    android:hint="@string/label_hint_password">
+
+                    <EditText
+                        style="@style/edit_style"
+                        android:afterTextChanged="@{vm::setPassword}"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_confirm_password"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pix_8dp"
+                    android:hint="@string/label_hint_confirm_password">
+
+                    <EditText
+                        style="@style/edit_style"
+                        android:afterTextChanged="@{vm::setConfirmPassword}"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/btn_style"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/pix_16dp"
+                    android:onClick="@{()->vm.doRegister()}"
+                    android:text="@string/label_register" />
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/loader_container"
+                app:showError="@{vm.showError}"
+                app:showLoader="@{vm.showLoader}"
+                app:text="@{vm.showErrorText}" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

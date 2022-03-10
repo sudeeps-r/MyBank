@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">My Bank</string>
+    <string name="m_transfer">Transfer</string>
+    <string name="m_logout">Log Out</string>
+    <string name="m_sign_up">Sign Up</string>
+    <string name="logout_confirmation">Do you really to log out?.</string>
+    <string name="label_you_have">You Have</string>
+    <string name="label_account_no">Account No</string>
+    <string name="label_account_holder">Account Holder</string>
+    <string name="label_session_expired">Session expired, please login again.</string>
+    <string name="label_hint_user_name">User Name</string>
+    <string name="label_hint_password">Password</string>
+    <string name="label_hint_confirm_password">Confirm Password</string>
+    <string name="label_login">Login</string>
+    <string name="label_register">Register</string>
+    <string name="label_create_account">Register</string>
+    <string name="label_currency">S$%1$s</string>
+    <string name="label_txn_history">Your Transaction History</string>
+    <string name="label_hint_account_no">Account Number</string>
+    <string name="label_description">Description</string>
+    <string name="label_hint_amount">Amount</string>
+    <string name="label_retry">Retry</string>
+    <string name="login_invalid_user_name">Please enter user name</string>
+    <string name="login_invalid_password">Please enter password</string>
+    <string name="signup_empty_valid_error">Please enter user name and password</string>
+    <string name="signup_password_valid_error">Password mismatch</string>
+    <string name="transaction_completed">Transaction completed successfully.</string>
+    <string name="transaction_failed">Error occurred, please try after sometimes.</string>
+    <string name="label_transfer_now">Transfer Now</string>
+    <string name="label_hint_payee">Payee</string>
+    <string name="register_success">Registration completed, please login.</string>
+    <string name="no_internet_connection">Please check your internet connection.</string>
+    <string name="un_expected_error">Unexpected error happened, please try again after sometimes.</string>
+    <string name="label_dashboard">Dashboard</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="showError"
+            type="int" />
+
+        <variable
+            name="showLoader"
+            type="int" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clickable="true"
+        android:visibility="@{showLoader == View.VISIBLE || showError == View.VISIBLE ? View.VISIBLE : View.GONE}"
+        android:focusable="true">
+
+        <TextView
+            style="@style/text_bold"
+            android:text="@{text}"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/font_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            android:visibility="@{showError}"
+            android:textStyle="normal" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:visibility="@{showLoader}" />
+    </FrameLayout>
+</layout>

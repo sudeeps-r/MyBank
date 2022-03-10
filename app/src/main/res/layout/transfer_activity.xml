@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.app.mybank.ui.transfer.service.TransferRequest" />
+
+        <variable
+            name="vm"
+            type="com.app.mybank.ui.transfer.TransferViewModel" />
+
+        <variable
+            name="data"
+            type="com.app.mybank.ui.transfer.service.PayeeData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/MyThemeOverlay_Toolbar" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/pix_24dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_spinner"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_hint_payee"
+                    app:boxBackgroundColor="@null"
+                    app:boxBackgroundMode="filled"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <AutoCompleteTextView
+                        style="@style/edit_style"
+                        android:id="@+id/payee_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_account_no"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pix_8dp"
+                    android:hint="@string/label_hint_account_no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tin_spinner">
+
+                    <EditText
+                        android:id="@+id/et_account_no"
+                        style="@style/edit_style"
+                        android:afterTextChanged="@{vm::setAccountNo}"
+                        android:text="@{data.accountNo}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_amount"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pix_8dp"
+                    android:hint="@string/label_hint_amount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tin_account_no"
+                    app:prefixText="S$"
+                    app:prefixTextAppearance="@style/edit_text_style">
+
+                    <EditText
+                        android:id="@+id/et_amount"
+                        style="@style/edit_style"
+                        android:afterTextChanged="@{vm::setAmount}"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tin_desc"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pix_8dp"
+                    android:hint="@string/label_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tin_amount">
+
+                    <EditText
+                        android:id="@+id/et_desc"
+                        style="@style/edit_style"
+                        android:afterTextChanged="@{vm::setDesc}"
+                        android:gravity="bottom"
+                        android:maxLines="10"
+                        android:minEms="10"
+                        android:minLines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/btn_style"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/pix_16dp"
+                    android:onClick="@{()->vm.doTransfer()}"
+                    android:text="@string/label_transfer_now"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tin_desc" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                layout="@layout/loader_container"
+                app:showError="@{vm.showError}"
+                app:showLoader="@{vm.showLoader}"
+                app:text="@{vm.showErrorText}" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>
