@@ -1,4 +1,4 @@
-# MyBank This is a Kotlin Base ADR project
+# MyBank is a Kotlin Base ADR project
 
 Dependency
 
